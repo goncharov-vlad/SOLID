@@ -1,7 +1,7 @@
-# L
-## Liskov Substitution Principle
+# I
+## Interface Segregation Principle
 
-_Objects in the program must be replaceable with instances of their subtypes without changing the correctness of the program execution._
+_Code should not be forced to depend upon interfaces that they do not use_
 
 ###### Example of violating of the principle:
 ```js

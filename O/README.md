@@ -1,7 +1,7 @@
 # O
 ## Open–Closed Principle
 
-_Entities should be open for extension, but closed for modification_
+_Entities should be open for extension, but closed for modification._
 
 ###### Example of violating of the principle:
 ```js

@@ -1,7 +1,7 @@
 # S
 ## Single-Responsibility Principle
 
-_Each class has its own single responsibility_
+_Each class has its own single responsibility._
 
 ###### Example of violating of the principle:
 ```js
