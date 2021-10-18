@@ -1,7 +1,7 @@
-# O
-## Open–Closed Principle
+# L
+## Liskov Substitution Principle
 
-_Entities should be open for extension, but closed for modification_
+_Objects in the program must be replaceable with instances of their subtypes without changing the correctness of the program execution_
 
 ###### Example of violating of the principle:
 ```js
