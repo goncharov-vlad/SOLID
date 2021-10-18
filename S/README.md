@@ -4,9 +4,7 @@
 
 **Each class has its own single responsibility**.
 
-Below example of violating of Single-Responsibility Principle: 
-`./single-responsibility/bad.js`
-
+Below example of violating of Single-Responsibility Principle:
 ```js
 class Product {
     /**
@@ -78,12 +76,11 @@ console.log(html)
 console.log(json)
 ```
 
-The error is that `Product::formatToHtml()` and `Product::formatToJson()` methods cannot be part of the class, 
-because formatting is another responsibility. For formatting we need a `Formatter` class.
+The mistake is that `Product::formatToHtml()` and `Product::formatToJson()` methods cannot be part of the class.
+These methods need to be moved from a `Product` class to another place, because formatting is another responsibility.
+Let's be "another place" is class with name `Formatter`
 
 Below refactored code to make it follow the principle:
-`./single-responsibility/nice.js`
-
 ```js
 class Product {
     /**
@@ -161,5 +158,6 @@ console.log(html)
 console.log(json)
 ```
 
-After refactoring the code is following the principle (Each class has its own single responsibility). Responsibility of
-`Product` is to make and give data of product, responsibility of `Formatter` is formatting this data.
+After refactoring, the code is following the principle: _each class has its own single responsibility_. 
+
+Responsibility of `Product` is to make and give data of product, responsibility of `Formatter` is format the data.
