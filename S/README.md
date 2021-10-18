@@ -1,6 +1,6 @@
-#S
+# S
 
-##Single-Responsibility Principle
+## Single-Responsibility Principle
 _Each class has its own single responsibility_
 
 ###### Example of violating of the principle:
@@ -78,8 +78,8 @@ console.log(json)
 ### Why the code violates the principle ?
 The mistake is that `Product::formatToHtml()` and `Product::formatToJson()` methods cannot be part of the class  because formatting is another responsibility.
 
-### What should be done with code to follow principle ?
-These methods need to be moved from a `Product` class to another place, let's be another place is class with name `Formatter`
+### What should be done with code to follow the principle ?
+These methods need to be moved from a `Product` class to another place, "let's be another place" is class with name `Formatter`
 
 ###### Refactored code to make it follow the principle:
 ```js
