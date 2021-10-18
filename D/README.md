@@ -1,8 +1,8 @@
 # D
 ## Dependency inversion principle
 
-_Code should not be forced to depend upon interfaces that they do not use_
-
+_Abstractions should not depend on details. Details should depend on abstractions.
+High-level modules should not depend on low-level modules. Both should depend on abstractions._
 ###### Example of violating of the principle:
 ```js
 
