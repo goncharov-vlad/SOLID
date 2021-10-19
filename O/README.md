@@ -5,7 +5,6 @@
 _Entities should be open for extension, but closed for modification._
 
 ###### Example of violating of the principle:
-
 ```js
 class Protocol {
     /**
@@ -21,11 +20,11 @@ class Protocol {
 class Transmitter {
     /**
      *
-     * @param data
-     * @param type
+     * @param data {string}
+     * @param type {string}
      */
-    transfer(data, type) {
-        switch (type) {
+    transfer(data, protocol) {
+        switch (protocol) {
             case 'ftp':
                 (new Ftp()).send(data)
                 break
@@ -62,15 +61,27 @@ transmitter.transfer(`(~_~)`, 'http')
 ```
 
 ### Why the code violates the principle ?
-
-...
+Because if a new `Protocol` is added:
+```js
+class NewProtocol extends Protocol {
+}
+```
+the `Transmitter::transfer()` method will need to be changed to add a new switch condition for that `Protocol`:
+```js
+case 'newProtocol':
+    (new NewProtocol()).send(data)
+    break
+```
+Code of method `Transmitter::transfer()` has to be changed by introducing new conditions for each added `Protocol`,
+which means `Transmitter` is not closed for modification. This is a violation of the principle.
 
 ### What should be done with code to follow the principle ?
-
-...
+Given example is very easy, there are many ways to make it follow the principle.
+For example: class extending, passing entity to the method params instead of string, dependency injection.
+I have chosen the last one. By this `Transmitter` should have `_protocol` property which stores specific `Protocol`
+and setter `Transmitter::set protocol()` for that.
 
 ###### Refactored code to make it follow the principle:
-
 ```js
 class Transmitter {
     /**
@@ -132,4 +143,6 @@ transmitter.protocol = protocol
 transmitter.transfer(`(".")`)
 ```
 
-...
+After refactoring, the code follows the principle: _ Objects should be open for extension, but closed for modification.
+The `Transmitter` is open to extension through dependency injection to use any type of `Protocol`, and
+it's closed for modification because for this no need to change the code of `Transmitter::transfer()` method.
