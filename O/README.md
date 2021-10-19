@@ -72,6 +72,10 @@ case 'newProtocol':
     (new NewProtocol()).send(data)
     break
 ```
+to use like:
+```js
+transmitter.transfer(`(~_~)`, 'newProtocol')
+```
 Code of method `Transmitter::transfer()` has to be changed by introducing new conditions for each added `Protocol`,
 which means `Transmitter` is not closed for modification. This is a violation of the principle.
 
@@ -143,6 +147,6 @@ transmitter.protocol = protocol
 transmitter.transfer(`(".")`)
 ```
 
-After refactoring, the code follows the principle: _ Objects should be open for extension, but closed for modification.
+After refactoring, the code follows the principle: _Objects should be open for extension, but closed for modification._
 The `Transmitter` is open to extension through dependency injection to use any type of `Protocol`, and
 it's closed for modification because for this no need to change the code of `Transmitter::transfer()` method.
