@@ -1,9 +1,11 @@
 # S
+
 ## Single-Responsibility Principle
 
 _Each class has its own single responsibility._
 
 ###### Example of violating of the principle:
+
 ```js
 class Product {
     /**
@@ -76,12 +78,17 @@ console.log(json)
 ```
 
 ### Why the code violates the principle ?
-The mistake is that `Product::formatToHtml()` and `Product::formatToJson()` methods cannot be part of the class  because formatting is another responsibility.
+
+The mistake is that `Product::formatToHtml()` and `Product::formatToJson()` methods cannot be part of the class because
+formatting is another responsibility.
 
 ### What should be done with code to follow the principle ?
-These methods need to be moved from a `Product` class to another place, "let's be another place" is class with name `Formatter`
+
+These methods need to be moved from a `Product` class to another place, "let's be another place" is class with
+name `Formatter`
 
 ###### Refactored code to make it follow the principle:
+
 ```js
 class Product {
     /**
@@ -159,5 +166,5 @@ console.log(html)
 console.log(json)
 ```
 
-After refactoring, the code is following the principle: _each class has its own single responsibility_.
-Responsibility of `Product` is representing data of product, responsibility of `Formatter` is format the data.
+After refactoring, the code is following the principle: _each class has its own single responsibility_. Responsibility
+of `Product` is representing data of product, responsibility of `Formatter` is format the data.
