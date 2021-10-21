@@ -40,7 +40,9 @@ class Transmitter {
                 break
             default:
                 throw new Error('Wrong protocol')
+                
         }
+        
     }
 
 }

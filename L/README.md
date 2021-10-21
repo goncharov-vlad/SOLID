@@ -24,6 +24,7 @@ class Warehouse {
      */
     get productsData() {
         return this._productsData
+        
     }
 
 }
@@ -123,6 +124,7 @@ class Warehouse {
      */
     get productsData() {
         return this._productsData
+        
     }
 
 }
