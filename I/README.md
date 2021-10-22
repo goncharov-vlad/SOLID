@@ -138,7 +138,7 @@ problem is that class `PostReader` is dependent on interface of `User` that it c
 
 Apply the principle and split the User class into two: `AbstractUser` as the main one and `PostEditor` for those who can
 edit posts. Then, it's possible to make class `PostReader` without unnecessary methods and make combination of
-classes `AbstractUser` and `PostEditor` using ES6 mixins. 
+classes `AbstractUser` and `PostEditor` using ES6 mixins.
 
 ###### Refactored code to make it follow the principle:
 
@@ -256,4 +256,8 @@ function AdminExtending() {
 }
 ```
 
-...
+After refactoring, the code follows the principle: _Code should not be forced to depend upon interfaces that they do not
+use._
+Using the principle of interface separation, the `User` class is split into two: `AbstractUser` and `PostEditor`.
+`PostReader` is now independent of an interface that it doesn't need, and the `AdminExtending()` function can be called to mix
+the `AbstractUser` and` PostEditor` classes to have the full functionality of the admin class
