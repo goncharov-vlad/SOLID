@@ -1,14 +1,13 @@
 # I
+
 ## Interface Segregation Principle
 
 _Code should not be forced to depend upon interfaces that they do not use_
 
 ###### Example of violating of the principle:
+
 ```js
-/**
- * @abstract
- */
-class AbstractUser {
+class User {
     /**
      * @property {string}
      * @protected
@@ -42,11 +41,6 @@ class AbstractUser {
      * @param lastname {string}
      */
     constructor(firstname, lastname) {
-        if (new.target === User) {
-            throw new TypeError("Cannot construct AbstractUser instance directly")
-
-        }
-
         this._firstname = firstname
         this._lastname = lastname
 
@@ -65,7 +59,7 @@ class AbstractUser {
      */
     updatePost(post) {
         //... implementation
-        
+
     }
 
     /**
@@ -86,7 +80,7 @@ class AbstractUser {
 
 }
 
-class PostReader extends AbstractUser {
+class PostReader extends User {
     /**
      * @param post
      */
@@ -110,10 +104,10 @@ class PostReader extends AbstractUser {
         throw new Error('PostReader cannot update post')
 
     }
-    
+
 }
 
-class Admin extends AbstractUser {
+class Admin extends User {
     /**
      * @param post
      */
@@ -134,13 +128,20 @@ class Admin extends AbstractUser {
 ```
 
 ### Why the code violates the principle ?
-...
+
+`PostReader` has need methods and properties by inhering `User` but after inheriting it also has unnecessary methods
+like `PostReader:createPost()`
+, `PostReader:updatePost()` and `PostReader:deletePost()`, this reason why they are redefined to throw error. So, the
+problem is that class `PostReader` is dependent on interface of `User` that it can't use but `Admin` and `User` can.
 
 ### What should be done with code to follow the principle ?
-...
 
+Apply the principle and split the User class into two: `AbstractUser` as the main one and `PostEditor` for those who can
+edit posts. Then, it's possible to make class `PostReader` without unnecessary methods and make combination of
+classes `AbstractUser` and `PostEditor` using ES6 mixins. 
 
 ###### Refactored code to make it follow the principle:
+
 ```js
 /**
  * @abstract
@@ -179,7 +180,7 @@ class AbstractUser {
      * @param lastname {string}
      */
     constructor(firstname, lastname) {
-        if (new.target === User) {
+        if (new.target === AbstractUser) {
             throw new TypeError("Cannot construct AbstractUser instance directly")
 
         }
@@ -231,7 +232,7 @@ class PostEditor extends PostReader {
 
 function AdminExtending() {
     /**
-     * @class Admin 
+     * @class Admin
      */
     return class AbstractUser extends PostEditor {
         /**
@@ -247,7 +248,7 @@ function AdminExtending() {
          */
         disapprovePost(post) {
             //... implementation
-            
+
         }
 
     }
