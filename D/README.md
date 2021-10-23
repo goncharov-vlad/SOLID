@@ -5,7 +5,69 @@ _Abstractions should not depend on details. Details should depend on abstraction
 High-level modules should not depend on low-level modules. Both should depend on abstractions._
 ###### Example of violating of the principle:
 ```js
+class Mysql {
+    /**
+     * @param data {Object}
+     */
+    mysqlCreate(data) {
+        console.log('Mysql create', data)
 
+    }
+
+    /**
+     * @param id {number}
+     */
+    mysqlRemove(id) {
+        console.log('Mysql remove', id)
+
+    }
+
+}
+
+class MongoDB {
+    /**
+     * @param data {Object}
+     */
+    mongoDBCreate(data) {
+        console.log('MongoDB create', data)
+
+    }
+
+    /**
+     * @param id {number}
+     */
+    mongoDBRemove(id) {
+        console.log('MongoDB remove', id)
+
+    }
+
+}
+
+class Application {
+    /**
+     * @param data {Object}
+     */
+    createPost(data) {
+        new Mysql().mysqlCreate(data)
+
+    }
+
+    /**
+     * @param id {number}
+     */
+    removePost(id) {
+        new Mysql().mysqlRemove(id)
+
+    }
+
+}
+
+let id = 1
+let name = 'Test Name'
+
+let app = new Application()
+app.createPost({id, name})
+app.removePost(id)
 ```
 
 ### Why the code violates the principle ?
