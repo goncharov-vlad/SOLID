@@ -1,11 +1,14 @@
 # D
+
 ## Dependency inversion principle
 
-_Abstractions should not depend on details. Details should depend on abstractions.
-High-level modules should not depend on low-level modules. Both should depend on abstractions._
+_Abstractions should not depend on details. Details should depend on abstractions. High-level modules should not depend
+on low-level modules. Both should depend on abstractions._
+
 ###### Example of violating of the principle:
+
 ```js
-class Mysql {
+class MysqlLibrary {
     /**
      * @param data {Object}
      */
@@ -24,7 +27,7 @@ class Mysql {
 
 }
 
-class MongoDB {
+class MongoDBLibrary {
     /**
      * @param data {Object}
      */
@@ -48,7 +51,7 @@ class Application {
      * @param data {Object}
      */
     createPost(data) {
-        new Mysql().mysqlCreate(data)
+        new MysqlLibrary().mysqlCreate(data)
 
     }
 
@@ -56,7 +59,7 @@ class Application {
      * @param id {number}
      */
     removePost(id) {
-        new Mysql().mysqlRemove(id)
+        new MysqlLibrary().mysqlRemove(id)
 
     }
 
@@ -71,15 +74,25 @@ app.removePost(id)
 ```
 
 ### Why the code violates the principle ?
-...
+
+The program uses `MysqlLibrary`, but it is difficult to replace it with another one `MongoDBLibrary`,
+because `Application` works directly with its interface. It means, high-level module `Application` depend on low-level
+modules like `MysqlLibrary` or `MongoDBLibrary`, in other words if the program should use `MongoDBLibrary`
+instead of `MysqlLibrary`, all places where `MysqlLibrary` is, must be changed for using new interface
+of `MongoDBLibrary`. This situation can happen every time when there are multiple ways to do the same.
 
 ### What should be done with code to follow the principle ?
-...
 
+`MongoDBLibrary` and `MysqlLibrary` must have the same interface, then the high level code `Application`
+will not need to change to use them. For this, it's a good idea to create an interface `AbstractAdapter` and implement
+with `MysqlAdapter`, `MongoDBAdapter` classes where low-level code of `MysqlLibrary` and `MongoDBLibrary` will be used
+for implementation. And then `Application` does not depend on low-level code and uses `AbstractAdapter` interface for
+any implementations (polymorphism)
 
 ###### Refactored code to make it follow the principle:
+
 ```js
-class Mysql {
+class MysqlLibrary {
     /**
      * @param data {Object}
      */
@@ -98,7 +111,7 @@ class Mysql {
 
 }
 
-class MongoDB {
+class MongoDBLibrary {
     /**
      * @param data {Object}
      */
@@ -120,33 +133,33 @@ class MongoDB {
 /**
  * @abstract
  */
-class Adapter {
+class AbstractAdapter {
     constructor() {
-        if (new.target === Adapter) {
-            throw new Error('Adapter is abstract')
+        if (new.target === AbstractAdapter) {
+            throw new Error('AbstractAdapter cannot be instaced directly')
 
         }
 
     }
 
     create() {
-        throw new Error('Adapter has to implement create method')
+        throw new Error('Have to implement create method')
 
     }
 
     remove() {
-        throw new Error('Adapter has to implement remove method')
+        throw new Error('Have to implement remove method')
 
     }
 
 }
 
-class MysqlAdapter extends Adapter {
+class MysqlAdapter extends AbstractAdapter {
     /**
      * @param data {Object}
      */
     create(data) {
-        new Mysql().mysqlCreate(data)
+        new MysqlLibrary().mysqlCreate(data)
 
     }
 
@@ -154,18 +167,18 @@ class MysqlAdapter extends Adapter {
      * @param id {number}
      */
     remove(id) {
-        new Mysql().mysqlRemove(id)
+        new MysqlLibrary().mysqlRemove(id)
 
     }
 
 }
 
-class MongoDBAdapter extends Adapter {
+class MongoDBAdapter extends AbstractAdapter {
     /**
      * @param data {Object}
      */
     create(data) {
-        new MongoDB().mongoDBCreate(data)
+        new MongoDBLibrary().mongoDBCreate(data)
 
     }
 
@@ -173,7 +186,7 @@ class MongoDBAdapter extends Adapter {
      * @param id {number}
      */
     remove(id) {
-        new MongoDB().mongoDBRemove(id)
+        new MongoDBLibrary().mongoDBRemove(id)
 
     }
 
@@ -183,11 +196,16 @@ class Application {
     _db
 
     /**
-     * @param db {Adapter}
+     * @param db {AbstractAdapter}
      */
     constructor(db) {
-        this._db = db
+        if (!(db instanceof AbstractAdapter)) {
+            throw new TypeError(`DB has to be instance of AbstractAdapter`)
 
+        }
+
+        this._db = db
+        
     }
 
     /**
@@ -216,4 +234,8 @@ app.createPost({id, name})
 app.removePost(id)
 ```
 
-...
+After refactoring, the code follows the principle: _Abstractions should not depend on details. Details should depend on
+abstractions. High-level modules should not depend on low-level modules. Both should depend on abstractions._
+Now `Application` which is high-level module doesn't depend on `MysqlLibrary` or `MongoDBLibrary` which are low-level,
+both of them depend `AbstractAdapter` abstraction which doesn't depend on specific implementation like `MongoDBAdapter`
+or `MysqlAdapter`.
