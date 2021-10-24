@@ -234,8 +234,10 @@ app.createPost({id, name})
 app.removePost(id)
 ```
 
+### In total
+
 After refactoring, the code follows the principle: _Abstractions should not depend on details. Details should depend on
 abstractions. High-level modules should not depend on low-level modules. Both should depend on abstractions._
 Now `Application` which is high-level module doesn't depend on `MysqlLibrary` or `MongoDBLibrary` which are low-level,
-both of them depend `AbstractAdapter` abstraction which doesn't depend on specific implementation like `MongoDBAdapter`
+both of them depend on `AbstractAdapter` abstraction which doesn't depend on specific implementation like `MongoDBAdapter`
 or `MysqlAdapter`.

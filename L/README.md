@@ -186,6 +186,7 @@ printProductData(southWarehouse.productsData)
 printProductData(westWarehouse.productsData)
 printProductData(northWarehouse.productsData)
 ```
+### In total
 
 After refactoring, the code follows the principle: _Objects in the program must be replaceable with instances of their
 subtypes without changing the correctness of the program execution._

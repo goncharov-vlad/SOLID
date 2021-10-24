@@ -159,6 +159,8 @@ transmitter.protocol = protocol
 transmitter.transfer(`(".")`)
 ```
 
+### In total
+
 After refactoring, the code follows the principle: _Objects should be open for extension, but closed for modification._
 The `Transmitter` is open to extension through dependency injection to use any type of `Protocol`, and it's closed for
 modification because for this no need to change the code of `Transmitter::transfer()` method.

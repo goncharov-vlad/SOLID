@@ -166,5 +166,7 @@ console.log(html)
 console.log(json)
 ```
 
+### In total
+
 After refactoring, the code is following the principle: _each class has its own single responsibility_. Responsibility
 of `Product` is representing data of product, responsibility of `Formatter` is format the data.

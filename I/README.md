@@ -256,6 +256,8 @@ function AdminExtending() {
 }
 ```
 
+### In total
+
 After refactoring, the code follows the principle: _Code should not be forced to depend upon interfaces that they do not
 use._
 Using the principle of interface separation, the `User` class is split into two: `AbstractUser` and `PostEditor`.
