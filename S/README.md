@@ -84,7 +84,7 @@ formatting is another responsibility.
 
 ### What should be done with code to follow the principle ?
 
-These methods need to be moved from a `Product` class to another place, "let's be another place" is class with
+These methods need to be moved from a `Product` class to another place, let's "another place" will be class with
 name `Formatter`
 
 ###### Refactored code to make it follow the principle:
