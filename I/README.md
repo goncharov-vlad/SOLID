@@ -1,6 +1,6 @@
 # I
 
-## Interface Segregation Principle
+## Interface Segregation Principle [ISP]
 
 _Code should not be forced to depend upon interfaces that they do not use_
 

@@ -1,6 +1,6 @@
 # S
 
-## Single-Responsibility Principle
+## Single-Responsibility Principle [SRP]
 
 _Each class has its own single responsibility._
 

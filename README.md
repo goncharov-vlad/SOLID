@@ -1,10 +1,10 @@
 # SOLID
 
-Explaining SOLID principles in my words and ES6 words.
+Explaining SOLID principles in my words by using ES6 and JSDocs
 
 ### Structure
 
-Each file is a `.md` file which contains the following sections:
+Each directory has a `.md` file which contains the following sections:
 
 - Classic principal explanation
 - Example of violating of the principle

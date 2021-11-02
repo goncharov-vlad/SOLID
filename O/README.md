@@ -1,6 +1,6 @@
 # O
 
-## Open–Closed Principle
+## Open–Closed Principle [OCP]
 
 _Entities should be open for extension, but closed for modification_
 
