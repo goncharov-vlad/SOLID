@@ -4,7 +4,7 @@ Explaining SOLID principles in my words by using ES6 and JSDocs
 
 ### Structure
 
-Each directory has a `.md` file which contains the following sections:
+Each directory has a `README.md` file which contains the following sections:
 
 - Classic principal explanation
 - Example of violating of the principle
