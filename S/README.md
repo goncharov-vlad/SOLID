@@ -49,8 +49,8 @@ class Product {
      * @return {{price: Product.price, name: Product.name}}
      */
     formatToJson() {
-        let name = this.name
-        let price = this.price
+        const name = this.name
+        const price = this.price
 
         return {name, price}
 
@@ -60,18 +60,17 @@ class Product {
      * @return {string}
      */
     formatToHtml() {
-        let name = this.name
-        let price = this.price
+        const name = this.name
+        const price = this.price
 
         return `<b>name: </b>${name}<br><b>price: </b>${price}`
     }
 
 }
 
-let product = new Product('Phone', 10)
-
-let html = product.formatToHtml()
-let json = product.formatToJson()
+const product = new Product('Phone', 10)
+const html = product.formatToHtml()
+const json = product.formatToJson()
 
 console.log(html)
 console.log(json)
@@ -136,8 +135,8 @@ class Formatter {
      * @return {{price: Product.price, name: Product.name}}
      */
     formatToJson(product) {
-        let name = product.name
-        let price = product.price
+        const name = product.name
+        const price = product.price
 
         return {name, price}
 
@@ -148,19 +147,18 @@ class Formatter {
      * @returns {string}
      */
     formatToHtml(product) {
-        let name = product.name
-        let price = product.price
+        const name = product.name
+        const price = product.price
 
         return `<b>name: </b>${name}<br><b>price: </b>${price}`
     }
 
 }
 
-let product = new Product('Phone', 10)
-let formatter = new Formatter()
-
-let html = formatter.formatToHtml(product)
-let json = formatter.formatToJson(product)
+const product = new Product('Phone', 10)
+const formatter = new Formatter()
+const html = formatter.formatToHtml(product)
+const json = formatter.formatToJson(product)
 
 console.log(html)
 console.log(json)

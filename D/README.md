@@ -65,10 +65,10 @@ class Application {
 
 }
 
-let id = 1
-let name = 'Test Name'
+const id = 1
+const name = 'Test Name'
+const app = new Application()
 
-let app = new Application()
 app.createPost({id, name})
 app.removePost(id)
 ```
@@ -226,10 +226,10 @@ class Application {
 
 }
 
-let id = 1
-let name = 'Test Name'
+const id = 1
+const name = 'Test Name'
+const app = new Application(new MongoDBAdapter())
 
-let app = new Application(new MongoDBAdapter())
 app.createPost({id, name})
 app.removePost(id)
 ```

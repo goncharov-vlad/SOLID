@@ -83,10 +83,10 @@ function printProductData(products) {
 
 }
 
-let warehouse = new Warehouse()
-let southWarehouse = new SouthWarehouse()
-let westWarehouse = new WestWarehouse()
-let northWarehouse = new NorthWarehouse()
+const warehouse = new Warehouse()
+const southWarehouse = new SouthWarehouse()
+const westWarehouse = new WestWarehouse()
+const northWarehouse = new NorthWarehouse()
 
 printProductData(warehouse.productsData)
 printProductData(southWarehouse.productsData)
@@ -176,10 +176,10 @@ function printProductData(products) {
 
 }
 
-let warehouse = new Warehouse()
-let southWarehouse = new SouthWarehouse()
-let westWarehouse = new WestWarehouse()
-let northWarehouse = new NorthWarehouse()
+const warehouse = new Warehouse()
+const southWarehouse = new SouthWarehouse()
+const westWarehouse = new WestWarehouse()
+const northWarehouse = new NorthWarehouse()
 
 printProductData(warehouse.productsData)
 printProductData(southWarehouse.productsData)

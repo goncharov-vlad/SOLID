@@ -59,7 +59,7 @@ class Http extends Protocol {
 class Ftp extends Protocol {
 }
 
-let transmitter = new Transmitter()
+const transmitter = new Transmitter()
 transmitter.transfer(`(~_~)`, 'http')
 ```
 
@@ -152,8 +152,8 @@ class Http extends Protocol {
 class Ftp extends Protocol {
 }
 
-let transmitter = new Transmitter()
-let protocol = new Http()
+const transmitter = new Transmitter()
+const protocol = new Http()
 
 transmitter.protocol = protocol
 transmitter.transfer(`(".")`)
