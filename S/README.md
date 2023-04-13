@@ -4,7 +4,7 @@
 
 _Each class has its own single responsibility._
 
-###### Example of violating of the principle:
+###### Example of violation of the principle:
 
 ```js
 class Product {
@@ -76,12 +76,12 @@ console.log(html)
 console.log(json)
 ```
 
-### Why the code violates the principle ?
+### Why the code violates the principle?
 
 The mistake is that `Product::formatToHtml()` and `Product::formatToJson()` methods cannot be part of the class because
 formatting is another responsibility.
 
-### What should be done with code to follow the principle ?
+### What should be done with code to follow the principle?
 
 These methods need to be moved from a `Product` class to another place, let's "another place" will be class with
 name `Formatter`
@@ -167,4 +167,4 @@ console.log(json)
 ### In total
 
 After refactoring, the code is following the principle: _each class has its own single responsibility_. Responsibility
-of `Product` is representing data of product, responsibility of `Formatter` is format the data.
+of `Product` is representing data of a product, the responsibility of `Formatter` is to format the data.

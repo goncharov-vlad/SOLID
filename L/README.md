@@ -5,7 +5,7 @@
 _Objects in the program must be replaceable with instances of their subtypes without changing the correctness of the
 program execution_
 
-###### Example of violating of the principle
+###### Example of violation of the principle
 
 ```js
 class Warehouse {
@@ -94,15 +94,15 @@ printProductData(westWarehouse.productsData)
 printProductData(northWarehouse.productsData)
 ```
 
-### Why the code violates the principle ?
+### Why the code violates the principle?
 
-The if condition of function `printProductData()` tells about the problem. `SouthWarehouse` is subtype of `Warehouse`
-but its property `SouthWarehouse::_productsData` has different data structure from other subtypes. This is the reason
-why function `printProductData()` has to have the if condition to check the data structure, otherwise code throws error
+The if condition of function `printProductData()` tells about the problem. `SouthWarehouse` is a subtype of `Warehouse`
+but its property `SouthWarehouse::_productsData` has a different data structure from other subtypes and from its parent as well. This is the reason
+why function `printProductData()` has to have the if condition to check the data structure, otherwise, the code throws an error
 
-### What should be done with code to follow the principle ?
+### What should be done with code to follow the principle?
 
-Need to remake data structure of `SouthWarehouse::_productsData` property to the same as in other subtypes
+Need to remake the data structure of `SouthWarehouse::_productsData` property to the same as in other subtypes
 of `Warehouse`. After it's done the if condition can be removed from `printProductData()` function
 
 ###### Refactored code to make it follow the principle

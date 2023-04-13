@@ -4,7 +4,7 @@
 
 _Code should not be forced to depend upon interfaces that they do not use_
 
-###### Example of violating of the principle
+###### Example of violation of the principle
 
 ```js
 class User {
@@ -127,14 +127,14 @@ class Admin extends User {
 }
 ```
 
-### Why the code violates the principle ?
+### Why the code violates the principle?
 
 `PostReader` has need methods and properties by inhering `User` but after inheriting it also has unnecessary methods
 like `PostReader:createPost()`
 , `PostReader:updatePost()` and `PostReader:deletePost()`, this reason why they are redefined to throw errors. So, the
 problem is that class `PostReader` is dependent on the interface of `User` that it can't use but `Admin` and `User` can
 
-### What should be done with code to follow the principle ?
+### What should be done with code to follow the principle?
 
 Apply the principle and split `User` into two: `AbstractUser` as the main one and `PostEditor` for those who can edit
 posts. Then, it's possible to make class `PostReader` without unnecessary methods and make a combination

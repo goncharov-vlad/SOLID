@@ -4,7 +4,7 @@
 
 _Entities should be open for extension, but closed for modification_
 
-###### Example of violating of the principle
+###### Example of violation of the principle
 
 ```js
 class Protocol {
@@ -63,7 +63,7 @@ const transmitter = new Transmitter()
 transmitter.transfer(`(~_~)`, 'http')
 ```
 
-### Why the code violates the principle ?
+### Why the code violates the principle?
 
 Because if a new `Protocol` is added
 
@@ -72,7 +72,7 @@ class NewProtocol extends Protocol {
 }
 ```
 
-`Transmitter::transfer()` method need to be changed to add a new switch condition for that `Protocol`
+`Transmitter::transfer()` method needs to be changed to add a new switch condition for that `Protocol`
 
 ```js
 case 'newProtocol':
@@ -86,10 +86,10 @@ to use like
 transmitter.transfer(`(~_~)`, 'newProtocol')
 ```
 
-Code of method `Transmitter::transfer()` has to be changed by introducing new conditions for each added `Protocol`,
+The code of method `Transmitter::transfer()` has to be changed by introducing new conditions for each added `Protocol`,
 which means `Transmitter` is not closed for modification. This is a violation of the principle
 
-### What should be done with code to follow the principle ?
+### What should be done with code to follow the principle?
 
 Given example is very easy, there are many ways to make it follows the principle like class extending, passing
 the entity to the method params instead of the string, dependency injection. I have chosen the last one. By this `Transmitter`
